@@ -15,3 +15,15 @@ for n in range(0,len(list)) :
 
 title=list[n].find(class_='tit').find("a").text
 print("영화제목 :\t",title)
+
+# 
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+html = urlopen('https://movie.naver.com/movie/sdb/rank/rmovie.nhn')
+soup = BeautifulSoup(html, 'lxml')
+titles = soup.find_all('td','title')
+rank = 1
+for title in titles:
+    print(str(rank) + " : " + title.find('a').text)
+    rank += 1
